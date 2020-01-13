@@ -15,7 +15,7 @@ Parameters:
   VpcInternalDnsName: 
     Type: String
     AllowedPattern: "^([a-z0-9]+(-[a-z0-9]+)*\\.?)+\\.$"
-    Default: tokyo.local
+    Default: tokyo.local.
     ConstraintDescription: You can use letters (abc), numbers (123) and dashes/hyphens, and the last character is '.'.
   VpcName:
     Description: Name for the VPC
