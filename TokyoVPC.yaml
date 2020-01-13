@@ -75,7 +75,7 @@ Parameters:
     ConstraintDescription: Must be like 10.1.1.0/24
   VyOSImageID:
     Type: String
-    Default: ami-02fd1ca9bf6430f0f
+    Default: ami-918470f7
   VyOSInstanceType:
     Type: String
     Default: c5.2xlarge
