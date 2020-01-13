@@ -303,7 +303,7 @@ Resources:
     Properties:
       LaunchTemplate:
         LaunchTemplateName: VyOSLunchTemplate
-        Version: !GetAtt ProxyLunchTemplate.LatestVersionNumber
+        Version: !GetAtt VyOSLunchTemplate.LatestVersionNumber
       SubnetId: !Ref Subnet1
       SourceDestCheck: false
       Tags:
@@ -314,7 +314,7 @@ Resources:
     Properties:
       LaunchTemplate:
         LaunchTemplateName: VyOSLunchTemplate
-        Version: !GetAtt ProxyLunchTemplate.LatestVersionNumber
+        Version: !GetAtt VyOSLunchTemplate.LatestVersionNumber
       SubnetId: !Ref Subnet2
       SourceDestCheck: false
       Tags:
