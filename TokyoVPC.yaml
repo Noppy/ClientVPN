@@ -313,7 +313,7 @@ Resources:
           CidrIp: 10.0.0.0/8
       Tags:
         - Key: Name
-          Value: !Sub VyOSSG
+          Value: VyOSSG
   #------------------ VyOS
   VyOSLunchTemplate:
     Type: AWS::EC2::LaunchTemplate
@@ -332,7 +332,7 @@ Resources:
             ResourceType: instance
             Tags:
               - Key: Name
-                Value: !Sub Tokyo-VyOS
+                Value: VyOS
   VyOS1:
     Type: AWS::EC2::Instance
     Properties:
