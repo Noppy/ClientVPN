@@ -78,7 +78,7 @@ Parameters:
     Default: ami-918470f7
   VyOSInstanceType:
     Type: String
-    Default: c5.2xlarge
+    Default: c4.2xlarge
   KeyName:
     Type: AWS::EC2::KeyPair::KeyName
     Description: (required) Name of an existing EC2 key pair
