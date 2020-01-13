@@ -248,7 +248,7 @@ Resources:
       GatewayId: !Ref Igw
     DependsOn:
       - AttachIgw
-  ClientVPCRoute1:
+  ClientVPCRoute2:
     Type: AWS::EC2::Route
     Properties:
       RouteTableId: !Ref RouteTable2
@@ -256,8 +256,6 @@ Resources:
       InstanceId: !Ref VyOS2
     DependsOn:
       - VyOS2
-
-
   #---- Attache to subnets in the  VPC
   RouteTableAssociationSubnet1:
     Type: AWS::EC2::SubnetRouteTableAssociation
