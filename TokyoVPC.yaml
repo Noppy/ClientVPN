@@ -343,7 +343,7 @@ Resources:
       SourceDestCheck: false
       Tags:
         - Key: Name
-        - Value: VyOS-1
+          Value: VyOS-1
   VyOS2:
     Type: AWS::EC2::Instance
     Properties:
@@ -354,12 +354,7 @@ Resources:
       SourceDestCheck: false
       Tags:
         - Key: Name
-        - Value: VyOS-2
-
-
-
-
-
+          Value: VyOS-2
 Outputs:
   #------------------ VPC
   VpcId:
