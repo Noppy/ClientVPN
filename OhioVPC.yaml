@@ -337,6 +337,8 @@ Resources:
       SubnetIds:
         - !Ref Subnet1
         - !Ref Subnet2
+      SecurityGroupIds:
+        - !Ref VPCEndpointSG
   SsmMessagesEndpoint:
     Type: 'AWS::EC2::VPCEndpoint'
     Properties:
@@ -347,6 +349,8 @@ Resources:
       SubnetIds:
         - !Ref Subnet1
         - !Ref Subnet2
+      SecurityGroupIds:
+        - !Ref VPCEndpointSG
   S3VpcEndpoint:
     Type: 'AWS::EC2::VPCEndpoint'
     Properties:
