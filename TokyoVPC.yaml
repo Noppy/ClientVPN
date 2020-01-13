@@ -206,34 +206,69 @@ Resources:
         - Key: Name
           Value: !Sub ${Subnet2Name}
   #------------------ Route Table
-  #----------  VPC Public Route Table
-  RouteTable:
+  #----------  VPC Public Route Table1
+  RouteTable1:
     Type: AWS::EC2::RouteTable
     Properties:
       VpcId: !Ref Vpc
       Tags:
         - Key: Name
-          Value: !Sub ${VpcName}-RouteTable
-  VpcInternetRote:
+          Value: !Sub ${VpcName}-RouteTable1
+  VpcInternetRote1:
     Type: AWS::EC2::Route
     Condition: CheckInternetAccess
     Properties:
-      RouteTableId: !Ref RouteTable
+      RouteTableId: !Ref RouteTable1
       DestinationCidrBlock: 0.0.0.0/0
       GatewayId: !Ref Igw
     DependsOn:
       - AttachIgw
+  ClientVPCRoute1:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref RouteTable1
+      DestinationCidrBlock: 10.3.0.0/16
+      InstanceId: !Ref VyOS1
+    DependsOn:
+      - VyOS1
+  #----------  VPC Public Route Table2
+  RouteTable2:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref Vpc
+      Tags:
+        - Key: Name
+          Value: !Sub ${VpcName}-RouteTable2
+  VpcInternetRote2:
+    Type: AWS::EC2::Route
+    Condition: CheckInternetAccess
+    Properties:
+      RouteTableId: !Ref RouteTable2
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref Igw
+    DependsOn:
+      - AttachIgw
+  ClientVPCRoute1:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref RouteTable2
+      DestinationCidrBlock: 10.3.0.0/16
+      InstanceId: !Ref VyOS2
+    DependsOn:
+      - VyOS2
+
+
   #---- Attache to subnets in the  VPC
   RouteTableAssociationSubnet1:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
       SubnetId: !Ref Subnet1
-      RouteTableId: !Ref RouteTable
+      RouteTableId: !Ref RouteTable1
   RouteTableAssociationSubnet2:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
       SubnetId: !Ref Subnet2
-      RouteTableId: !Ref RouteTable
+      RouteTableId: !Ref RouteTable2
   #------------------ Local Domain Name
   VpcInternalDns:
     Type: AWS::Route53::HostedZone
@@ -264,7 +299,7 @@ Resources:
         -
           IpProtocol: tcp
           FromPort: 22
-          ToPort: 2
+          ToPort: 22
           CidrIp: 0.0.0.0/0
         -
           IpProtocol: tcp
@@ -320,6 +355,11 @@ Resources:
       Tags:
         - Key: Name
         - Value: VyOS-2
+
+
+
+
+
 Outputs:
   #------------------ VPC
   VpcId:
@@ -344,11 +384,16 @@ Outputs:
     Export:
       Name: !Sub "${AWS::StackName}-Subnet2Id"
   #------------------ route tables
-  RouteTableId:
-    Description: Route table for Public Subnet
-    Value: !Ref RouteTable
+  RouteTable1Id:
+    Description: Route table1 for Public Subnet
+    Value: !Ref RouteTable1
     Export:
-      Name: !Sub "${AWS::StackName}-RouteTableId"
+      Name: !Sub "${AWS::StackName}-RouteTable1Id"
+  RouteTable2Id:
+    Description: Route table2 for Public Subnet
+    Value: !Ref RouteTable2
+    Export:
+      Name: !Sub "${AWS::StackName}-RouteTable2Id"
   #------------------ Resource DNS name
   VpcInternalDnsName:
     Description: Resource DNS zone name in the  Vpc
